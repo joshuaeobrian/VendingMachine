@@ -46,13 +46,28 @@ public class Controller implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if(newValue.length()==3){
-					System.out.println("ok");
+
+					getItem(newValue);
 					//TODO kick new function that removes the product and clears screen
 				}
 			}
 		});
 
 	}
+
+	public void buttonPress(ActionEvent actionEvent) {
+		String[] Button = actionEvent.getSource().toString().split("'");
+		outputBox.appendText(Button[1]);
+	}
+
+	public void insertButton(ActionEvent actionEvent) {
+		customer = new Customer(Double.parseDouble(moneyBox.getText().toString()),0.00);
+		System.out.println(customer.getMoney());
+		//TODO flash in output INSERTED $ X.XX
+	}
+
+	//all private classes
+	//Set Product table
 	private void setTable(ObservableList list){
 		lotCol.setCellValueFactory(new PropertyValueFactory<Product,String>("LotNumber"));
 		lotCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -66,14 +81,30 @@ public class Controller implements Initializable {
 		ProductTableView.setItems(list);
 	}
 
-	public void buttonPress(ActionEvent actionEvent) {
-		String[] Button = actionEvent.getSource().toString().split("'");
-		outputBox.appendText(Button[1]);
-	}
+	private void getItem(String lotNumber){
+		int convert;
+		for(int i = 0; i <= ProductTableView.getItems().size();i++){
+			ProductTableView.getSelectionModel().select(i);
+			Product item = (Product) ProductTableView.getSelectionModel().getSelectedItem();
+			if(item.getLotNumber().toLowerCase().equals(lotNumber.toLowerCase())){
+				System.out.println();
+				System.out.println("====================");
+				System.out.println("Dropping some "+item.getProduct());
+				convert = Integer.parseInt(item.getQty())-1;
+				item.setQty(Integer.toString(convert));
+				System.out.println(item.getQty()+" "+ item.getProduct()+" left!");
+				System.out.println("====================");
+				//
 
-	public void insertButton(ActionEvent actionEvent) {
-		customer = new Customer(Double.parseDouble(moneyBox.getText().toString()),0.00);
-		System.out.println(customer.getMoney());
-		//TODO flash in output INSERTED $ X.XX
+				break;
+			}else{
+				System.out.println(item.getLotNumber());
+				System.out.println(item.getProduct());
+				System.out.println(item.getPrice());
+				System.out.println(item.getQty());
+				System.out.println();
+			}
+		}
+
 	}
 }

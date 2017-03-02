@@ -118,7 +118,7 @@
                   </GridPane>
                   <HBox prefHeight="82.0" prefWidth="538.0">
                      <children>
-                        <TextField fx:id="moneyBox" prefHeight="123.0" prefWidth="431.0" />
+                        <TextField id="moneyBox" fx:id="moneyBox" prefHeight="123.0" prefWidth="431.0" />
                         <Button mnemonicParsing="false" onAction="#insertButton" prefHeight="131.0" prefWidth="229.0" text="Insert Money" />
                      </children>
                      <padding>
