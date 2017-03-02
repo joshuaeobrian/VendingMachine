@@ -1,0 +1,18 @@
+#padGrid .button{
+	-fx-background-color: lightgrey;
+	}
+#padGrid .button:hover{
+	-fx-background-color: darkgray;
+	}
+.outputLabel{
+	-fx-background-color: black;
+	-fx-font-size: 29px;
+	-fx-text-fill: #ffffff;
+	-fx-alignment: center;
+	-fx-border-radius: 5px;
+	-fx-label-padding: 30px;
+	
+	}
+#moneyBox{
+	-fx-alignment: center;
+	}
